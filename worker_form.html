@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <title>SAAA - Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background);
+        }
+
+        :root {
+            --primary: #12887e;
+            --secondary: #34AD54;
+            --light: #FFF9EC;
+            --dark: #0b423d;
+            --background: #F5F5F5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            margin-top: -15px;
+            margin-right: 0;
+        }
+
+        .navbar-brand img {
+
+            height: 100px;
+        }
+
+        .navbar-menu {
+            margin-left: auto;
+        }
+
+        .nav-items {
+            margin-top: 20px;
+            display: flex;
+            list-style: none;
+
+            padding: 0;
+        }
+
+        .nav-item {
+            margin: 0 1rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bolder;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary);
+        }
+
+        .navbar-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #fff;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                display: none;
+            }
+
+            .navbar-menu {
+
+                display: none;
+                position: absolute;
+                top: 110px;
+                left: 0;
+                right: 0;
+                background-color: rgba(255, 255, 255, 1);
+                padding: 1rem;
+            }
+
+            .nav-items {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .nav-item a {
+                color: var(--dark);
+            }
+
+            .navbar-toggle {
+                margin-top: 60px;
+                display: block;
+            }
+        }
+
+        .form-section {
+            background-color: var(--background);
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .form-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-button {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .form-group label {
+                font-size: 1rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 0.9rem;
+            }
+
+            .submit-button {
+                font-size: 1rem;
+            }
+        }
+
+        footer a:hover {
+            color: var(--light);
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+
+
+
+        footer {
+            background: linear-gradient(to left, var(--primary), #1d9c92);
+            color: #fff;
+            padding: 4rem 2rem;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            flex: 1 1 300px;
+            margin: 1rem;
+        }
+
+        .footer-info,
+        .footer-subscribe,
+        .footer-links,
+        .footer-social,
+        .footer-map {
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3,
+        .footer-subscribe h3,
+        .footer-links h3,
+        .footer-social h3,
+        .footer-map h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-info a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-info a i {
+            margin-right: 0.5rem;
+        }
+
+        .footer-info a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-subscribe form {
+            display: flex;
+        }
+
+        .footer-subscribe input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .footer-subscribe button {
+            background-color: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-subscribe button:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-social .social-icons a {
+            color: var(--light);
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social .social-icons a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-3 py-2" style="background-color: #093831; z-index: 2;">
+        <div class="row gx-0">
+            <div class="col-12 col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start"
+                    style="min-height: 45px;">
+                    <small class="me-lg-3 text-white mb-2 mb-lg-0"><i class="fa fa-map-marker-alt me-2"></i>بومرداس.
+                        بومرداس. الجزائر</small>
+                    <small class="me-lg-3 text-white mb-2 mb-lg-0"><i class="fa fa-phone-alt me-2"></i>+213 11 11 11
+                        11</small>
+                    <small class="text-white"><i class="fa fa-envelope-open me-2"></i>contact@sasuservice.com</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 text-center text-white text-lg-end">
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-end"
+                    style="min-height: 45px;">
+                    <a target="_blank" class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                        href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                    <a target="_blank" class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                        href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                    <a target="_blank" class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                        href="#!"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                    <a target="_blank" class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="#!"><i
+                            class="fab fa-youtube fw-normal"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-menu">
+                    <ul class="nav-items">
+                        <li class="nav-item"><a href="index.html">الرئيسية</a></li>
+                        <li class="nav-item"><a href="worker_form.html">بوابة العامل</a></li>
+                        <li class="nav-item"><a href="index.html#about-us">من نحن</a></li>
+                        <li class="nav-item"><a href="index.html#pricing-section">خدماتنا</a></li>
+                        <li class="nav-item"><a href="index.html#footer-container">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-brand">
+                    <a href="#" style="text-decoration: none;">
+                        <img src="2662F550-4FD1-4E4C-AA14-6891443BEA4F(1).png" alt="شعارك">
+                    </a>
+                </div>
+                <div class="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <h2 class="form-title">طلب الخدمة للساعي</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">الاسم</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="family-name">اللقب</label>
+                        <input type="text" id="family-name" name="family-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-type">نوع الخدمة</label>
+                        <select id="service-type" name="service-type" required>
+                            <option value="">اختر نوع الخدمة</option>
+                            <option value="administrative">الخدمات الادارية</option>
+                            <option value="consulting">الاستشارات و الخبرة</option>
+                            <option value="financial">الخدمات المالية</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-description">وصف الخدمة المطلوبة</label>
+                        <textarea id="service-description" name="service-description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="documents">المستندات المطلوبة</label>
+                        <input type="file" id="documents" name="documents[]" multiple required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">طريقة الدفع</label>
+                        <select id="payment" name="payment" required>
+                            <option value="">اختر طريقة الدفع</option>
+                            <option value="cash">نقدي</option>
+                            <option value="online">دفع عبر الانترنت</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="aaddressd">الموقع</label>
+                        <input type="text" id="address" name="address" required>
+                      </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-button">إرسال الطلب</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container" id="footer-container">
+            <div class="footer-left">
+                <div class="footer-info">
+                    <h3>تواصل معنا</h3>
+                    <p>نود أن نسمع منك!</p>
+                    <a href="tel:+1234567890"><i class="fas fa-phone"></i> +1234567890</a>
+                    <a href="mailto:contact@sasuservice.com"><i class="fas fa-envelope"></i> contact@sasuservice.com</a>
+                </div>
+                <div class="footer-subscribe">
+                    <h3>اشترك في نشرتنا الإخبارية</h3>
+                    <form>
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <button type="submit">اشترك</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-center">
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html#about-us">من نحن</a></li>
+                        <li><a href="index.html#pricing-section">خدماتنا</a></li>
+                        <li><a href="index.html#footer-container">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>تابعنا</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-map">
+                    <h3>اعثر علينا</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.427223307153!2d3.4749748116269874!3d36.76366575202418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e68ef724c950d%3A0x4b62c9bbf2a50d4d!2z2YPZhNmK2Kkg2KfZhNmF2K3YsdmI2YLYp9iqINmI2KfZhNmD2YrZhdmK2KfYoQ!5e0!3m2!1sen!2sdz!4v1711584246663!5m2!1sen!2sdz"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2023 SASU Service. جميع الحقوق محفوظة.</p>
+        </div>
+
+        <!-- Font Awesome icons -->
+        <script src="https://kit.fontawesome.com/481f6f7e30.js" crossorigin="anonymous"></script>
+    </footer>
+
+    <script>
+        // Navbar toggle animation
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarMenu = document.querySelector('.navbar-menu');
+
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
