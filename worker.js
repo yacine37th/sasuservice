@@ -19,12 +19,12 @@ document.querySelector('form').addEventListener('submit', async function (event)
     const serviceType = document.getElementById('service-type').value;
     const serviceDescription = document.getElementById('service-description').value;
     const email = document.getElementById('email').value;
-    const documents = document.getElementById('documents').files; // handle files appropriately
+    const documents = document.getElementById('documents').files; 
     const payment = document.getElementById('payment').value;
     const address = document.getElementById('address').value;
 
     try {
-        const docRef = await addDoc(collection(db, "serviceRequestsClients"), {
+        const docRef = await addDoc(collection(db, "serviceRequestsWorker"), {
             fullName: fullName,
             familyName: familyName,
             serviceType: serviceType,
@@ -34,7 +34,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
             address: address,
             timestamp: serverTimestamp(),
             serviceType: serviceType,
-            serviceFor: "client"
+            serviceFor: "worker"
         });
         alert("تم إرسال الطلب بنجاح! رقم معرف الطلب الخاص بك هو: " + docRef.id);
         document.querySelector('form').reset();
