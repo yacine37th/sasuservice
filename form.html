@@ -17,7 +17,23 @@
       padding: 0;
       background-color: var(--background);
     }
-
+    .spinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #09f;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      z-index: 9999;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
     :root {
       --primary: #12887e;
       --secondary: #34AD54;
@@ -539,8 +555,16 @@
     <!-- Font Awesome icons -->
     <script src="https://kit.fontawesome.com/481f6f7e30.js" crossorigin="anonymous"></script>
   </footer>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <!-- Firebase Authentication SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <!-- Firebase Firestore SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+   
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="index.js"></script>
 
-  <script>
+  <!-- <script>
     // Navbar toggle animation
     const navbarToggle = document.querySelector('.navbar-toggle');
     const navbarMenu = document.querySelector('.navbar-menu');
@@ -548,7 +572,46 @@
     navbarToggle.addEventListener('click', () => {
       navbarMenu.classList.toggle('active');
     });
-  </script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyC8F6r8xQpPzUYDMDFdjYTa5rp1ubBFfpM",
+      authDomain: "sasuservice-33035.firebaseapp.com",
+      projectId: "sasuservice-33035",
+      storageBucket: "sasuservice-33035.appspot.com",
+      messagingSenderId: "151123513706",
+      appId: "1:151123513706:web:792a7b0b429628f4c09513"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
+
+    document.getElementById('serviceForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var fullName = document.getElementById('fullName').value;
+      var email = document.getElementById('email').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+      var serviceType = document.getElementById('serviceType').value;
+      var details = document.getElementById('details').value;
+
+      db.collection("serviceRequests").add({
+        fullName: fullName,
+        email: email,
+        phoneNumber: phoneNumber,
+        serviceType: serviceType,
+        details: details,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+        .then(function (docRef) {
+          alert("تم إرسال الطلب بنجاح! رقم معرف الطلب الخاص بك هو: " + docRef.id);
+          document.getElementById('serviceForm').reset();
+        })
+        .catch(function (error) {
+          alert("حدث خطأ أثناء إرسال الطلب. الرجاء المحاولة مرة أخرى.");
+          console.error("Error adding document: ", error);
+        });
+    });
+  </script> -->
 </body>
 
 </html>
