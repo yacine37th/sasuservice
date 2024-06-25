@@ -22,6 +22,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
     const documents = document.getElementById('documents').files; // handle files appropriately
     const payment = document.getElementById('payment').value;
     const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
 
     try {
         const docRef = await addDoc(collection(db, "serviceRequestsClients"), {
@@ -34,7 +35,8 @@ document.querySelector('form').addEventListener('submit', async function (event)
             address: address,
             timestamp: serverTimestamp(),
             serviceType: serviceType,
-            serviceFor: "client"
+            serviceFor: "client",
+            phone: phone
         });
         alert("تم إرسال الطلب بنجاح! رقم معرف الطلب الخاص بك هو: " + docRef.id);
         document.querySelector('form').reset();
