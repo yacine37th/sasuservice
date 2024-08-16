@@ -55,6 +55,23 @@
         width: 100%;
       }
 
+      div .text-white {
+        font-size: 80%;
+      }
+      div .d-flex {
+        display: flex;
+        justify-content: center;
+      }
+      small {
+        padding-right: 5px;
+      }
+      @media (max-width: 744px) {
+        div .d-flex {
+          display: block;
+          
+        }
+      }
+
       .navbar-brand {
         margin-top: -15px;
         margin-right: 0;
@@ -63,6 +80,7 @@
       .navbar-brand img {
 
         height: 100px;
+        padding: 3px;
       }
 
       .navbar-menu {
@@ -120,7 +138,8 @@
 
         .navbar-brand img {
 
-          height: 70px;
+          height: 60px;
+          padding: 3px;
         }
 
         .navbar-menu {
